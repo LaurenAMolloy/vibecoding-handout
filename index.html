@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vibe Something for Someone You Love</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #0f0f0f;
+    --paper: #faf8f4;
+    --accent: #7c3aed;
+    --accent2: #f59e0b;
+    --soft: #ede9fe;
+    --mid: #6d28d9;
+  }
+
+  @media print {
+    body { background: white; }
+    .page { box-shadow: none; }
+  }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: #e8e4dc;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 2rem;
+  }
+
+  .page {
+    background: var(--paper);
+    width: 794px;
+    min-height: 1123px;
+    padding: 56px 60px 48px;
+    box-shadow: 0 8px 48px rgba(0,0,0,0.18);
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* background decoration */
+  .page::before {
+    content: '';
+    position: absolute;
+    top: -80px; right: -80px;
+    width: 340px; height: 340px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #ede9fe 0%, transparent 70%);
+    z-index: 0;
+  }
+  .page::after {
+    content: '';
+    position: absolute;
+    bottom: -60px; left: -60px;
+    width: 260px; height: 260px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #fef3c7 0%, transparent 70%);
+    z-index: 0;
+  }
+
+  .content { position: relative; z-index: 1; }
+
+  /* HEADER */
+  .header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 36px;
+    gap: 24px;
+  }
+
+  .header-text { flex: 1; }
+
+  .eyebrow {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+
+  h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: 38px;
+    font-weight: 800;
+    line-height: 1.05;
+    color: var(--ink);
+    letter-spacing: -0.02em;
+  }
+
+  h1 span {
+    color: var(--accent);
+  }
+
+  .subtitle {
+    margin-top: 10px;
+    font-size: 15px;
+    color: #555;
+    line-height: 1.5;
+    max-width: 440px;
+  }
+
+  .badge {
+    background: var(--accent);
+    color: white;
+    font-family: 'Syne', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 100px;
+    white-space: nowrap;
+    align-self: flex-start;
+    margin-top: 6px;
+  }
+
+  /* DIVIDER */
+  .divider {
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent) 0%, var(--accent2) 100%);
+    border-radius: 2px;
+    margin-bottom: 32px;
+  }
+
+  /* WHAT IS */
+  .what-is {
+    background: var(--soft);
+    border-left: 4px solid var(--accent);
+    border-radius: 0 12px 12px 0;
+    padding: 18px 22px;
+    margin-bottom: 32px;
+  }
+
+  .what-is-label {
+    font-family: 'Syne', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--mid);
+    margin-bottom: 6px;
+  }
+
+  .what-is p {
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--ink);
+  }
+
+  .what-is strong { color: var(--accent); }
+
+  /* THREE COLUMNS */
+  .steps {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+
+  .step {
+    background: white;
+    border-radius: 14px;
+    padding: 20px 18px;
+    border: 1.5px solid #ebe7f5;
+    position: relative;
+  }
+
+  .step-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 36px;
+    font-weight: 800;
+    color: var(--soft);
+    line-height: 1;
+    margin-bottom: 8px;
+    -webkit-text-stroke: 2px var(--accent);
+    text-stroke: 2px var(--accent);
+  }
+
+  .step h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 6px;
+  }
+
+  .step p {
+    font-size: 13px;
+    line-height: 1.55;
+    color: #555;
+  }
+
+  /* PROMPT ANATOMY */
+  .prompt-section {
+    margin-bottom: 32px;
+  }
+
+  .section-label {
+    font-family: 'Syne', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1.5px;
+    background: #e5e0f5;
+  }
+
+  .prompt-box {
+    background: #1a1028;
+    border-radius: 12px;
+    padding: 20px 24px;
+    position: relative;
+    margin-bottom: 16px;
+  }
+
+  .prompt-box .cursor {
+    position: absolute;
+    top: 14px; left: 20px;
+    display: flex; gap: 6px;
+  }
+
+  .prompt-box .cursor span {
+    width: 10px; height: 10px; border-radius: 50%;
+    display: block;
+  }
+  .c1 { background: #ff5f57; }
+  .c2 { background: #febc2e; }
+  .c3 { background: #28c840; }
+
+  .prompt-text {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    line-height: 1.7;
+    color: #e2d9f3;
+    margin-top: 18px;
+  }
+
+  .highlight {
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-weight: 500;
+  }
+  .h-who { background: #7c3aed33; color: #c4b5fd; }
+  .h-what { background: #f59e0b33; color: #fcd34d; }
+  .h-feel { background: #10b98133; color: #6ee7b7; }
+
+  .legend {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: #555;
+  }
+
+  .legend-dot {
+    width: 10px; height: 10px; border-radius: 3px;
+  }
+  .ld-who { background: #7c3aed; }
+  .ld-what { background: #f59e0b; }
+  .ld-feel { background: #10b981; }
+
+  /* TIPS + PLATFORM */
+  .bottom-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 28px;
+  }
+
+  .tip-box, .platform-box {
+    border-radius: 14px;
+    padding: 20px 18px;
+  }
+
+  .tip-box {
+    background: #fffbeb;
+    border: 1.5px solid #fde68a;
+  }
+
+  .platform-box {
+    background: white;
+    border: 1.5px solid #ebe7f5;
+  }
+
+  .tip-box h3, .platform-box h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .tip-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+  }
+
+  .tip-list li {
+    font-size: 13px;
+    color: #444;
+    line-height: 1.45;
+    padding-left: 18px;
+    position: relative;
+  }
+
+  .tip-list li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--accent2);
+    font-weight: 700;
+  }
+
+  .platform-name {
+    font-family: 'Syne', sans-serif;
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--accent);
+    margin-bottom: 4px;
+  }
+
+  .platform-url {
+    font-size: 12px;
+    color: #888;
+    margin-bottom: 10px;
+    font-style: italic;
+  }
+
+  .platform-box p {
+    font-size: 13px;
+    color: #555;
+    line-height: 1.5;
+  }
+
+  /* FOOTER */
+  .footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 16px;
+    border-top: 1.5px solid #ebe7f5;
+  }
+
+  .footer-left {
+    font-size: 12px;
+    color: #aaa;
+  }
+
+  .go-build {
+    background: var(--accent);
+    color: white;
+    font-family: 'Syne', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 10px 22px;
+    border-radius: 100px;
+    letter-spacing: 0.04em;
+  }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="content">
+
+    <div class="header">
+      <div class="header-text">
+        <div class="eyebrow">Technovation · Student Guide</div>
+        <h1>Vibe something<br>for someone <span>you love</span></h1>
+        <p class="subtitle">You don't need to know how to code. You just need an idea — and one person in mind. A birthday card, a quiz, a surprise message. Start with the person.</p>
+      </div>
+      <div class="badge">Ages 13–15</div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="what-is">
+      <div class="what-is-label">What is vibe coding?</div>
+      <p>Vibe coding means <strong>describing what you want to build in plain English</strong> and letting AI write the code for you. You stay in charge — you decide what it looks like, what it does, and who it's for. The AI handles the technical part. Think of it like having a conversation with a very fast builder.</p>
+    </div>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">01</div>
+        <h3>Think of your person</h3>
+        <p>Who are you building this for? A friend, a sibling, a parent? Start with them — not the tech.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <h3>Write your prompt</h3>
+        <p>Describe what you want: who it's for, what it should do, and how it should feel. Be specific.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <h3>Refine &amp; share</h3>
+        <p>See what appears. Ask for changes. Keep going until it feels right. Then share it with that person.</p>
+      </div>
+    </div>
+
+    <div class="prompt-section">
+      <div class="section-label">What a good prompt looks like</div>
+      <div class="prompt-box">
+        <div class="cursor">
+          <span class="c1"></span><span class="c2"></span><span class="c3"></span>
+        </div>
+        <div class="prompt-text">
+          Build me <span class="highlight h-what">an interactive birthday card</span> for <span class="highlight h-who">my [friend, sister, brother] who  is turning [6]</span>. She loves [KPop Demon Hunters — Rumi, Mira and Zoey.] <span class="highlight h-what">When you click the card, it opens to reveal a birthday message.</span> <span class="highlight h-feel">[Neon purple and pink] theme, [sparkles, magical and exciting.]</span>
+        </div>
+      </div>
+      <div class="legend">
+        <div class="legend-item"><div class="legend-dot ld-who"></div> Who it's for</div>
+        <div class="legend-item"><div class="legend-dot ld-what"></div> What it should do</div>
+        <div class="legend-item"><div class="legend-dot ld-feel"></div> How it should feel</div>
+      </div>
+    </div>
+
+    <div class="bottom-grid">
+      <div class="tip-box">
+        <h3>💡 Prompt tips</h3>
+        <ul class="tip-list">
+          <li>Be specific — vague prompts get vague results</li>
+          <li>Describe the feeling, not just the function</li>
+          <li>If you don't like it, ask it to change one thing at a time</li>
+          <li>You can say "make it more fun" or "simpler" — that counts</li>
+          <li>The back-and-forth IS the skill</li>
+        </ul>
+      </div>
+      <div class="platform-box">
+        <h3>🛠 Where to build</h3>
+        <div class="platform-name">Replit</div>
+        <div class="platform-url">replit.com</div>
+        <p>Free, runs in your browser, no install needed. Your project is ready to share the moment it works. Ask a parent or teacher before creating an account.</p>
+      </div>
+    </div>
+
+    <div class="footer">
+      <div class="footer-left">technovation.org · vibe coding activity</div>
+      <div class="go-build">Now go build it →</div>
+    </div>
+
+  </div>
+</div>
+</body>
+</html>
